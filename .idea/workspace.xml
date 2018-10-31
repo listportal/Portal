@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b69aafca-8273-45bd-910b-f61be53cb336" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +58,9 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -112,11 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Routes/Home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="258" column="29" lean-forward="true" selection-start-line="258" selection-start-column="29" selection-end-line="258" selection-end-column="29" />
+            <state relative-caret-position="94">
+              <caret line="255" column="28" selection-start-line="255" selection-start-column="28" selection-end-line="255" selection-end-column="28" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="n#!!block;n#componentDidMount#0;n#Home#0" />
@@ -130,11 +131,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="616" column="29" selection-start-line="616" selection-start-column="22" selection-end-line="616" selection-end-column="29" />
+            <state relative-caret-position="429">
+              <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
             </state>
           </provider>
         </entry>
@@ -142,8 +143,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="39" column="4" lean-forward="true" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+            <state relative-caret-position="663">
+              <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -243,8 +244,8 @@
         <option value="$PROJECT_DIR$/src/Routes/Home.js" />
         <option value="$PROJECT_DIR$/src/Routes/List/SubList.js" />
         <option value="$PROJECT_DIR$/src/Routes/List/Items.js" />
-        <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/App.css" />
       </list>
     </option>
   </component>
@@ -274,6 +275,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -285,7 +287,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
@@ -376,11 +377,12 @@
       <workItem from="1539142180816" duration="170335000" />
       <workItem from="1540869296334" duration="2748000" />
       <workItem from="1540942927900" duration="2265000" />
+      <workItem from="1540950329587" duration="2387000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201441000" />
+    <option name="totallyTimeSpent" value="203828000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -628,24 +630,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="616" column="29" selection-start-line="616" selection-start-column="22" selection-end-line="616" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="39" column="4" lean-forward="true" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        <state relative-caret-position="663">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Routes/Home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="258" column="29" lean-forward="true" selection-start-line="258" selection-start-column="29" selection-end-line="258" selection-end-column="29" />
+        <state relative-caret-position="94">
+          <caret line="255" column="28" selection-start-line="255" selection-start-column="28" selection-end-line="255" selection-end-column="28" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <element signature="n#!!block;n#componentDidMount#0;n#Home#0" />
@@ -655,6 +650,13 @@
             <element signature="n#!!block;n#setConfettiState#0;n#Home#0" />
             <element signature="n#!!block;n#showList#0;n#Home#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
         </state>
       </provider>
     </entry>
