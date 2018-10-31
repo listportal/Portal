@@ -636,6 +636,7 @@ header {
     text-align: center;
     list-style-type: none;
     padding-left: 0px !important;
+    padding-top: 25px;
     /*animation: 1s ease-out 0s 1 slideInFromLeft;*/
 }
 
@@ -680,6 +681,9 @@ text {
     }
     .margin-adjust {
         margin-bottom: 25px!important;
+    }
+    .jumbotron {
+        /*padding-top: 20px;*/
     }
 }
 
