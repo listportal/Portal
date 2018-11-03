@@ -184,20 +184,30 @@ class Items extends Component {
     let userId = firebase.auth().currentUser.uid;
     e.preventDefault();
 
-    Database.createItem(userId, this.state.mainListId, this.state.subListId, this.state.newItemNameInput)
+    if(this.state.newItemNameInput) {
+      Database.createItem(userId, this.state.mainListId, this.state.subListId, this.state.newItemNameInput)
 
-    var that = this;
-    $.ajax({
-      url:this.setItemConfettiState(),
-      success:function() {
-        that.setItemConfettiState();
-      }
-    });
+      var that = this;
+      $.ajax({
+        url: this.setItemConfettiState(),
+        success: function () {
+          that.setItemConfettiState();
+        }
+      });
 
-    this.setState({
-      newItemNameInput: ''
-    });
+      this.setState({
+        newItemNameInput: ''
+      });
+    }
   }
+
+  /*handleItemClick(itemId, itemTitle) {
+    this.setState({
+      itemBackgroundColor: '#29516f',
+      itemForegroundColor: '#FFFFFF'
+    })
+
+  }*/
 
   render () {
     const config = {ConfettiConfig}
@@ -212,7 +222,10 @@ class Items extends Component {
               <div className='icon-shadow-container'><i id="editIcon" className="fas fa-edit fa-xs"
                                                         style={{color: 'green'}}></i></div>
             </a>
-            <div className="ribbon">
+            <div className='title-div' style={{backgroundColor: this.state.subListBackgroundColor}}>
+              <p className='title-text' style={{color: this.state.subListForegroundColor}}>{this.state.subListTitle}</p>
+            </div>
+            {/*<div className="ribbon">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                    viewBox="0 0 500 150" enableBackground="new 0 0 500 150" xmlSpace="preserve" preserveAspectRatio="xMaxYMax meet">
                 <g id="Layer_2">
@@ -226,21 +239,23 @@ class Items extends Component {
                   </g>
                 </g>
               </svg>
-            </div>
+            </div>*/}
             <a id="closeListBtn" className='margin-adjust' onClick={this.handleListClose}>
               <div className='icon-shadow-container'><i className="fas fa-times fa-xs"></i></div>
             </a>
           </Modal.Title>
-          <form ref="subListForm" id="createListDiv" className="addItemDiv" style={{marginTop: 0, marginBottom: 10}}
-                onSubmit={this.handleItemSubmit}>
+          <form ref="itemSubmitForm" id="createListDiv" className="addItemDiv" style={{marginTop: 0, marginBottom: 10}}
+                onSubmit={this.handleItemSubmit.bind(this)}>
             <div id="addItemContainer">
-              <Confetti active={this.state.showItemConfetti} config={config}/>
-              <input ref="subListName" id="submitText" type="text" name="newSubListNameInput" placeholder="New Item"
+              <input ref="itemName" id="submitText" type="text" name="newItemNameInput" placeholder="New Item"
                      value={this.state.newItemNameInput} onChange={this.handleChange.bind(this)}/>
               <a className='edit-icon-shadow' style={{color: 'darkslategrey'}} onClick={this.handleItemSubmit.bind(this)}><div className='icon-shadow-container'><i
                 className="fas fa-plus fa-lg"></i></div></a>
             </div>
           </form>
+          <div className='confetti-div'>
+            <Confetti active={ this.state.showItemConfetti } config={ config }/>
+          </div>
           <hr className="hrFormat" style={{marginLeft: '10px', marginRight: '10px', marginBottom: '30px'}}/>
           <section className="jumbotron" id="mainListSection" style={{paddingTop: 25}}>
             <div className="wrapper">
@@ -249,7 +264,7 @@ class Items extends Component {
                   return (
                     <Animated animationIn="flipInX" animationOut="fadeOut" isVisible={true}>
                     <li id="items" key={item.id}>
-                      <div><p style={{marginBottom: 0, fontWeight: 'normal'}}>{item.title}<a onClick={() => this.handleItemDelShow(item.id, item.title)} style={{float: 'right', marginLeft: 20}}><i id="delIcon" className="fas fa-trash-alt"></i></a><a onClick={() => this.handleEditShow(item.id, item.title)} style={{float: 'right', color: 'green'}}><i id="editIcon" className="fas fa-edit" style={{color: 'green'}}></i></a></p></div>
+                      <div ><p style={{marginBottom: 0, fontWeight: 'normal'}}>{item.title}<a onClick={() => this.handleItemDelShow(item.id, item.title)} style={{float: 'right', marginLeft: 20}}><i id="delIcon" className="fas fa-trash-alt"></i></a><a onClick={() => this.handleEditShow(item.id, item.title)} style={{float: 'right', color: 'green'}}><i id="editIcon" className="fas fa-edit" style={{color: 'green'}}></i></a></p></div>
                     </li>
                     </Animated>
                   )

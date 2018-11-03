@@ -128,13 +128,15 @@ class EditList extends Component {
 
   editList () {
     let userId = firebase.auth().currentUser.uid
-    Database.editMainList(userId, this.state.listId, this.state.listTitle, this.state.orderIndex, this.state.backgroundColor, this.state.foregroundColor)
-    listStore.mainListId = this.state.listId
-    listStore.mainListTitle = this.state.listTitle
-    listStore.mainListOrderIndex = this.state.orderIndex
-    listStore.mainListBackgroundColor = this.state.backgroundColor
-    listStore.mainListForegroundColor = this.state.foregroundColor
-    this.handleSavePrompt()
+    if(this.state.listTitle) {
+      Database.editMainList(userId, this.state.listId, this.state.listTitle, this.state.orderIndex, this.state.backgroundColor, this.state.foregroundColor)
+      listStore.mainListId = this.state.listId
+      listStore.mainListTitle = this.state.listTitle
+      listStore.mainListOrderIndex = this.state.orderIndex
+      listStore.mainListBackgroundColor = this.state.backgroundColor
+      listStore.mainListForegroundColor = this.state.foregroundColor
+      this.handleSavePrompt()
+    }
   }
 
   handleSavePrompt () {

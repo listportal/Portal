@@ -649,11 +649,40 @@ text {
     padding-top: 20px;
 }
 
+.confetti-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-div {
+    margin: 25px auto;
+    background: #FFFFFF;
+    border-top-left-radius: 10px 40px;
+    border-bottom-left-radius: 10px 40px;
+    border-top-right-radius: 10px 40px;
+    border-bottom-right-radius: 10px 40px;
+    padding: 5px;
+    width: 50%;
+    box-shadow: inset 0 0 10px #000000;
+    /*box-shadow: 3px 2px 2px 3px lightblue;*/
+}
+
+.title-text {
+    color: #343a40;
+    margin: 0px;
+}
+
 .ribbon {
     margin-left: 0px;
     margin-right: 0px;
     width: 20em;
+
     /*font-size: 6rem;*/
+}
+
+#Ribbon {
+    background-color: dimgrey;
 }
 
 .jumbotron {

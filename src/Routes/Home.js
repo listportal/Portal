@@ -121,18 +121,20 @@ class Home extends Component {
     let adjIndex = this.state.lists.length + 1;
     let listName = this.state.newListNameInput;
 
-    Database.createMainList(userId, listName, adjIndex);
+    if(listName) {
+      Database.createMainList(userId, listName, adjIndex);
 
-    var that = this;
-    $.ajax({
-      url:this.setConfettiState(),
-      success:function() {
-        that.setConfettiState();
-      }
-    });
-    this.setState({
-      newListNameInput: ''
-    });
+      var that = this;
+      $.ajax({
+        url: this.setConfettiState(),
+        success: function () {
+          that.setConfettiState();
+        }
+      });
+      this.setState({
+        newListNameInput: ''
+      });
+    }
   }
 
   setConfettiState() {
@@ -232,11 +234,14 @@ class Home extends Component {
         <div>
           <form ref="mainListForm" id="createListDiv" className="addItemDiv" onSubmit={this.handleSubmit}>
           <div id="addItemContainer">
-            <Confetti active={ this.state.showConfetti } config={ config }/>
+
             <input ref="listName" id="submitText" type="text" name="newListNameInput" placeholder="New List" value={this.state.newListNameInput} onChange={this.handleChange.bind(this)}/>
             <a className="edit-icon-shadow" style={{color: 'darkslategrey'}} onClick={this.handleSubmit.bind(this)}><div className='icon-shadow-container'><i style={{color: '#4A96AD'}}className="fas fa-plus fa-lg"></i></div></a>
           </div>
         </form>
+          <div className='confetti-div'>
+          <Confetti active={ this.state.showConfetti } config={ config }/>
+          </div>
         </div>
         <hr className="hrFormat" style={{marginLeft: '10px', marginRight: '10px', marginBottom: '30px'}}/>
         <section className="jumbotron jumbotron-padding-adjust" id="mainListSection">

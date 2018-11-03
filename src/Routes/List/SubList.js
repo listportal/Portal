@@ -134,19 +134,21 @@ class SubList extends Component {
     let orderIndex = this.state.subLists.length + 1
     let listName = this.state.newSubListNameInput
 
-    Database.createSubList(userId, mainListId, listName, orderIndex)
+    if(listName) {
+      Database.createSubList(userId, mainListId, listName, orderIndex)
 
-    let that = this
-    $.ajax({
-      url: this.setSubListConfettiState(),
-      success: function () {
-        that.setSubListConfettiState()
-      }
-    })
+      let that = this
+      $.ajax({
+        url: this.setSubListConfettiState(),
+        success: function () {
+          that.setSubListConfettiState()
+        }
+      })
 
-    this.setState({
-      newSubListNameInput: ''
-    })
+      this.setState({
+        newSubListNameInput: ''
+      })
+    }
   }
 
   setSubListConfettiState() {
@@ -219,7 +221,10 @@ class SubList extends Component {
               <div className='icon-shadow-container'><i id="editIcon" className="fas fa-edit fa-xs"
                                                         style={{color: 'green'}}></i></div>
             </a>
-            <div className="ribbon">
+            <div className='title-div' style={{backgroundColor: this.state.mainListBackgroundColor}}>
+              <p className='title-text' style={{color: this.state.mainListForegroundColor}}>{this.state.mainListTitle}</p>
+            </div>
+            {/*<div className="ribbon">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="0 0 500 150" enableBackground="new 0 0 500 150" xmlSpace="preserve" preserveAspectRatio="xMaxYMax meet">
               <g id="Layer_2">
@@ -233,7 +238,7 @@ class SubList extends Component {
                 </g>
               </g>
               </svg>
-            </div>
+            </div>*/}
             <a id="closeListBtn" className='margin-adjust' onClick={this.handleListClose}>
               <div className='icon-shadow-container'><i className="fas fa-times fa-xs"></i></div>
             </a>
@@ -241,13 +246,15 @@ class SubList extends Component {
           <form ref="subListForm" id="createListDiv" className="addItemDiv" style={{marginTop: 0, marginBottom: 10}}
                 onSubmit={this.handleSubListSubmit}>
             <div id="addItemContainer">
-              <Confetti active={this.state.showSubListConfetti} config={config}/>
               <input ref="subListName" id="submitText" type="text" name="newSubListNameInput" placeholder="New Sub-List"
                      value={this.state.newSubListNameInput} onChange={this.handleChange.bind(this)}/>
               <a className='edit-icon-shadow' style={{color: 'darkslategrey'}} onClick={this.handleSubListSubmit.bind(this)}><div className='icon-shadow-container'><i
                 className="fas fa-plus fa-lg"></i></div></a>
             </div>
           </form>
+          <div className='confetti-div'>
+            <Confetti active={ this.state.showSubListConfetti } config={ config }/>
+          </div>
           <hr className="hrFormat" style={{marginLeft: '10px', marginRight: '10px', marginBottom: '30px'}}/>
           <section className="jumbotron" id="mainListSection">
             <div className="wrapper">

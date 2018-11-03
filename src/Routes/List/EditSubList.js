@@ -130,13 +130,15 @@ class EditSubList extends Component {
 
   editList () {
     let userId = firebase.auth().currentUser.uid
-    Database.editSubList(userId, this.state.mainListId, this.state.subListId, this.state.subListTitle, this.state.subListOrderIndex, this.state.backgroundColor, this.state.foregroundColor)
-    listStore.subListId = this.state.subListId
-    listStore.subListTitle = this.state.subListTitle
-    listStore.subListOrderIndex = this.state.subListOrderIndex
-    listStore.subListBackgroundColor = this.state.subListBackgroundColor
-    listStore.subListForegroundColor = this.state.subListForegroundColor
-    this.handleSavePrompt()
+    if(this.state.subListTitle) {
+      Database.editSubList(userId, this.state.mainListId, this.state.subListId, this.state.subListTitle, this.state.subListOrderIndex, this.state.backgroundColor, this.state.foregroundColor)
+      listStore.subListId = this.state.subListId
+      listStore.subListTitle = this.state.subListTitle
+      listStore.subListOrderIndex = this.state.subListOrderIndex
+      listStore.subListBackgroundColor = this.state.subListBackgroundColor
+      listStore.subListForegroundColor = this.state.subListForegroundColor
+      this.handleSavePrompt()
+    }
   }
 
   handleSavePrompt () {

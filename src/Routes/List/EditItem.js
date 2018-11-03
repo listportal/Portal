@@ -67,9 +67,11 @@ class EditItem extends Component {
 
   editItem () {
     let userId = firebase.auth().currentUser.uid
-    Database.editItem(userId, this.state.mainListId, this.state.subListId, this.state.itemId, this.state.itemTitle)
-    listStore.itemTitle = this.state.itemTitle
-    this.handleSavePrompt()
+    if(this.state.itemTitle) {
+      Database.editItem(userId, this.state.mainListId, this.state.subListId, this.state.itemId, this.state.itemTitle)
+      listStore.itemTitle = this.state.itemTitle
+      this.handleSavePrompt()
+    }
   }
 
   handleSavePrompt () {
