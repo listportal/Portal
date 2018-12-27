@@ -217,7 +217,7 @@ class SubList extends Component {
           <Modal.Title id="listModalTitle">
             <a
               onClick={this.handleMainListEditShow.bind(this)}
-              id="editMainListBtn" className='edit-icon-shadow margin-adjust'>
+              id="editMainListBtn" className='edit-icon-shadow margin-adjust inset-box-shadow'>
               <div className='icon-shadow-container'><i id="editIcon" className="fas fa-edit fa-xs"
                                                         style={{color: 'green'}}></i></div>
             </a>
@@ -240,15 +240,15 @@ class SubList extends Component {
               </svg>
             </div>*/}
             <a id="closeListBtn" className='margin-adjust' onClick={this.handleListClose}>
-              <div className='icon-shadow-container'><i className="fas fa-times fa-xs"></i></div>
+              <div className='icon-shadow-container inset-box-shadow'><i className="fas fa-times fa-xs"></i></div>
             </a>
           </Modal.Title>
           <form ref="subListForm" id="createListDiv" className="addItemDiv" style={{marginTop: 0, marginBottom: 10}}
                 onSubmit={this.handleSubListSubmit}>
             <div id="addItemContainer">
-              <input ref="subListName" id="submitText" type="text" name="newSubListNameInput" placeholder="New Sub-List"
+              <input className='box-shadow' ref="subListName" id="submitText" type="text" name="newSubListNameInput" placeholder="New Sub-List"
                      value={this.state.newSubListNameInput} onChange={this.handleChange.bind(this)}/>
-              <a className='edit-icon-shadow' style={{color: 'darkslategrey'}} onClick={this.handleSubListSubmit.bind(this)}><div className='icon-shadow-container'><i
+              <a className='edit-icon-shadow submit-btn-padding' style={{color: 'darkslategrey'}} onClick={this.handleSubListSubmit.bind(this)}><div className='icon-shadow-container'><i
                 className="fas fa-plus fa-lg"></i></div></a>
             </div>
           </form>
@@ -280,7 +280,7 @@ class SubList extends Component {
             </div>
           </section>
           <Modal.Footer className='edit-footer'>
-            <Button onClick={this.handleListClose} className='edit-save-btn' bsStyle="info" bsSize="large"
+            <Button onClick={this.handleListClose} className='edit-save-btn box-shadow' bsStyle="info" bsSize="large"
                     block>Close</Button>
           </Modal.Footer>
         </div>

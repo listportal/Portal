@@ -66,11 +66,20 @@ header hr {
 }
 
 .icon-shadow-container {
+    /*width: 4rem;*/
+    /*height: 4rem;*/
+    /*font-size: 3rem;*/
+    /*border-radius:50%;*/
+    /*box-shadow: 1px 1px 1px 2px lightblue;*/
+
     width: 4rem;
     height: 4rem;
     font-size: 3rem;
-    border-radius:50%;
-    box-shadow: 1px 1px 1px 2px lightblue;
+    border-radius: 50%;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 #editIcon {
@@ -278,6 +287,7 @@ Confetti {
 #mainListSection {
     margin-right: 20px;
     margin-left: 20px;
+    padding-top: 15px;
 }
 
 #createListDiv {
@@ -547,6 +557,10 @@ header {
     width: 100%;
 }
 
+.submit-btn-padding {
+    padding: 2px;
+}
+
 #submitOrderIndexBtn {
     /*margin-left: 10px;*/
     margin-top: 10px;
@@ -611,16 +625,23 @@ header {
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .12), 0 1px 8px 0 rgba(0, 0, 0, .2);
     /* -webkit-box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3), inset 0px 4px 1px 1px white, inset 0px -3px 1px 1px; */
     /* box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3), inset 0px 4px 1px 1px white, inset 0px -3px 1px 1px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#items:hover {
-    background-color: #29516f;
-    color: white;
+.item-delete-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.item-delete-btn {
+    width: 100px;
 }
 
 .item {
     display: flex;
-    flex-direction: 'row';
+    flex-direction: row;
 
 }
 
@@ -629,6 +650,10 @@ header {
     padding-left: 0px !important;
     list-style-type: none;
     /*animation: 1s ease-out 0s 1 slideInFromLeft;*/
+}
+
+input[type=checkbox] {
+    transform: scale(1.5);
 }
 
 #subList {
@@ -664,8 +689,19 @@ text {
     border-bottom-right-radius: 10px 40px;
     padding: 5px;
     width: 50%;
-    box-shadow: inset 0 0 10px #000000;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22), inset 0 0 10px #000000;
     /*box-shadow: 3px 2px 2px 3px lightblue;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-shadow {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.inset-box-shadow {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22), inset 0 0 5px #000000;
 }
 
 .title-text {
@@ -719,6 +755,10 @@ text {
 @media (min-width: 769px) {
     .edit-save-btn {
         max-width: 30%
+    }
+    #items:hover {
+        background-color: #29516f;
+        color: white;
     }
 }
 

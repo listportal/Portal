@@ -235,8 +235,8 @@ class Home extends Component {
           <form ref="mainListForm" id="createListDiv" className="addItemDiv" onSubmit={this.handleSubmit}>
           <div id="addItemContainer">
 
-            <input ref="listName" id="submitText" type="text" name="newListNameInput" placeholder="New List" value={this.state.newListNameInput} onChange={this.handleChange.bind(this)}/>
-            <a className="edit-icon-shadow" style={{color: 'darkslategrey'}} onClick={this.handleSubmit.bind(this)}><div className='icon-shadow-container'><i style={{color: '#4A96AD'}}className="fas fa-plus fa-lg"></i></div></a>
+            <input className="box-shadow" ref="listName" id="submitText" type="text" name="newListNameInput" placeholder="New List" value={this.state.newListNameInput} onChange={this.handleChange.bind(this)}/>
+            <a className="edit-icon-shadow submit-btn-padding" style={{color: 'darkslategrey'}} onClick={this.handleSubmit.bind(this)}><div className='icon-shadow-container'><i style={{color: '#4A96AD'}}className="fas fa-plus fa-lg"></i></div></a>
           </div>
         </form>
           <div className='confetti-div'>

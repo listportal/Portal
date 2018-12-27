@@ -76,4 +76,20 @@ export default class Database {
       const listRef = firebase.database().ref('Users/' + userId + `/Lists/${listId}/${subListId}/${itemId}`);
       return listRef.remove();
     }
+
+    static bulkDeleteItems(userId, listId, subListId, itemsToDelete) {
+      itemsToDelete.forEach(function(item, index, array) {
+        console.log(item, index);
+        const listRef = firebase.database().ref('Users/' + userId + `/Lists/${listId}/${subListId}/${item}`);
+        return listRef.remove();
+      });
+    }
+
+    static deleteAllItems(userId, listId, subListId, items) {
+      items.forEach(function(item, index, array) {
+        console.log(item.id, index);
+        const listRef = firebase.database().ref('Users/' + userId + `/Lists/${listId}/${subListId}/${item.id}`);
+        return listRef.remove();
+      });
+    }
 }

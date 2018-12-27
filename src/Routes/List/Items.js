@@ -31,11 +31,13 @@ class Items extends Component {
       subListForegroundColor: listStore.subListForegroundColor,
       subListBackgroundColor: listStore.subListBackgroundColor,
       itemTitle: '',
-      newSublistNameInput: ''
+      newSublistNameInput: '',
+      itemsToDelete: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleListClose = this.handleListClose.bind(this)
     this.handleSubListSubmit = this.handleSubListSubmit.bind(this);
+    this.handleDeleteCheckBoxChange = this.handleDeleteCheckBoxChange.bind(this);
   }
 
   componentWillMount () {
@@ -75,6 +77,7 @@ class Items extends Component {
   }
 
   handleEditShow (itemId, itemTitle) {
+    console.log(itemId)
     listStore.itemId = itemId
     listStore.itemTitle = itemTitle
     /*this.setState({
@@ -201,6 +204,40 @@ class Items extends Component {
     }
   }
 
+  handleDeleteCheckBoxChange (e, itemId) {
+    let itemsToDelete = this.state.itemsToDelete;
+    if (e.target.checked) {
+      console.log('Checked!')
+      itemsToDelete.push(itemId);
+    } else {
+      let pos = itemsToDelete.indexOf(itemId);
+      console.log('Pos:' + pos);
+      console.log('Unchecked')
+      itemsToDelete.splice(pos, 1)
+    }
+
+    // this.setState({
+    //   itemsToDelete: deleteItems
+    // });
+    //let item;
+    this.state.itemsToDelete.forEach(function(item, index, array) {
+      console.log(item, index);
+    });
+
+    //console.log(this.state.itemsToDelete[0])
+
+  }
+
+  handleBulkItemDelete () {
+    let userId =  firebase.auth().currentUser.uid;
+    Database.bulkDeleteItems(userId, this.state.mainListId, this.state.subListId, this.state.itemsToDelete);
+  }
+
+  handleDeleteAllItems () {
+    let userId =  firebase.auth().currentUser.uid;
+    Database.deleteAllItems(userId, this.state.mainListId, this.state.subListId, this.state.items);
+  }
+
   /*handleItemClick(itemId, itemTitle) {
     this.setState({
       itemBackgroundColor: '#29516f',
@@ -218,7 +255,7 @@ class Items extends Component {
           <Modal.Title id="listModalTitle">
             <a
               onClick={this.handleSubListEditShow.bind(this)}
-              id="editMainListBtn" className='edit-icon-shadow margin-adjust'>
+              id="editMainListBtn" className='edit-icon-shadow margin-adjust inset-box-shadow'>
               <div className='icon-shadow-container'><i id="editIcon" className="fas fa-edit fa-xs"
                                                         style={{color: 'green'}}></i></div>
             </a>
@@ -241,20 +278,24 @@ class Items extends Component {
               </svg>
             </div>*/}
             <a id="closeListBtn" className='margin-adjust' onClick={this.handleListClose}>
-              <div className='icon-shadow-container'><i className="fas fa-times fa-xs"></i></div>
+              <div className='icon-shadow-container inset-box-shadow'><i className="fas fa-times fa-xs"></i></div>
             </a>
           </Modal.Title>
           <form ref="itemSubmitForm" id="createListDiv" className="addItemDiv" style={{marginTop: 0, marginBottom: 10}}
                 onSubmit={this.handleItemSubmit.bind(this)}>
             <div id="addItemContainer">
-              <input ref="itemName" id="submitText" type="text" name="newItemNameInput" placeholder="New Item"
+              <input className="box-shadow" ref="itemName" id="submitText" type="text" name="newItemNameInput" placeholder="New Item"
                      value={this.state.newItemNameInput} onChange={this.handleChange.bind(this)}/>
-              <a className='edit-icon-shadow' style={{color: 'darkslategrey'}} onClick={this.handleItemSubmit.bind(this)}><div className='icon-shadow-container'><i
+              <a className='edit-icon-shadow submit-btn-padding' style={{color: 'darkslategrey'}} onClick={this.handleItemSubmit.bind(this)}><div className='icon-shadow-container'><i
                 className="fas fa-plus fa-lg"></i></div></a>
             </div>
           </form>
           <div className='confetti-div'>
             <Confetti active={ this.state.showItemConfetti } config={ config }/>
+          </div>
+          <div className='item-delete-btn-container'>
+            <Button className='item-delete-btn box-shadow' bsStyle="info" bsSize="small" onClick={this.handleBulkItemDelete.bind(this)}>Delete</Button>
+            <Button className='item-delete-btn box-shadow' bsStyle="info" bsSize="small" onClick={this.handleDeleteAllItems.bind(this)}>Delete All</Button>
           </div>
           <hr className="hrFormat" style={{marginLeft: '10px', marginRight: '10px', marginBottom: '30px'}}/>
           <section className="jumbotron" id="mainListSection" style={{paddingTop: 25}}>
@@ -264,7 +305,7 @@ class Items extends Component {
                   return (
                     <Animated animationIn="flipInX" animationOut="fadeOut" isVisible={true}>
                     <li id="items" key={item.id}>
-                      <div ><p style={{marginBottom: 0, fontWeight: 'normal'}}>{item.title}<a onClick={() => this.handleItemDelShow(item.id, item.title)} style={{float: 'right', marginLeft: 20}}><i id="delIcon" className="fas fa-trash-alt"></i></a><a onClick={() => this.handleEditShow(item.id, item.title)} style={{float: 'right', color: 'green'}}><i id="editIcon" className="fas fa-edit" style={{color: 'green'}}></i></a></p></div>
+                      <input ref={item.id} type="checkbox" onChange={(e) => this.handleDeleteCheckBoxChange(e, item.id)} ></input><div ><p style={{marginBottom: 0, fontWeight: 'normal'}}>{item.title}</p></div><div style={{display: 'flex'}}><a onClick={() => this.handleEditShow(item.id, item.title)} style={{color: 'green'}}><i id="editIcon" className="fas fa-edit" style={{color: 'green'}}></i></a><a onClick={() => this.handleItemDelShow(item.id, item.title)} style={{marginLeft: 20}}><i id="delIcon" className="fas fa-trash-alt"></i></a></div>
                     </li>
                     </Animated>
                   )
@@ -276,7 +317,7 @@ class Items extends Component {
             </div>
           </section>
           <Modal.Footer className='edit-footer'>
-            <Button onClick={this.handleListClose} className='edit-save-btn' bsStyle="info" bsSize="large"
+            <Button onClick={this.handleListClose} className='edit-save-btn box-shadow' bsStyle="info" bsSize="large"
                     block>Close</Button>
           </Modal.Footer>
         </div>
