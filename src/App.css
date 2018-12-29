@@ -161,6 +161,10 @@ header hr {
     overflow-y: auto;
 }
 
+.modal-content {
+    padding: 10px;
+}
+
 .login-form {
     display: flex;
     margin-bottom: 10px;
@@ -652,6 +656,12 @@ header {
 
 .item-delete-btn {
     width: 100px;
+}
+
+#delete-all-items-modal-container {
+    font-size: 25px;
+    text-align: center;
+    padding: 10px;
 }
 
 .item {

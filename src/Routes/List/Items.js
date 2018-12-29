@@ -32,7 +32,8 @@ class Items extends Component {
       subListBackgroundColor: listStore.subListBackgroundColor,
       itemTitle: '',
       newSublistNameInput: '',
-      itemsToDelete: []
+      itemsToDelete: [],
+      showDeleteAllItemsModal: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleListClose = this.handleListClose.bind(this)
@@ -208,16 +209,12 @@ class Items extends Component {
   handleDeleteCheckBoxChange (e, itemId) {
     let itemsToDelete = this.state.itemsToDelete;
     let checkbox;
-    // e.currentTarget.style.animation = ' ';
-    // void e.currentTarget.offsetWidth;
     checkbox = e.currentTarget;
     checkbox.style.animation = 'unset';
     setTimeout(()=>{
       this.runCheckboxAnimation(checkbox)
     }, 100);
     if (e.target.checked) {
-
-
       console.log('Checked!')
       itemsToDelete.push(itemId);
     } else {
@@ -226,17 +223,9 @@ class Items extends Component {
       console.log('Unchecked')
       itemsToDelete.splice(pos, 1)
     }
-
-    // this.setState({
-    //   itemsToDelete: deleteItems
-    // });
-    //let item;
     this.state.itemsToDelete.forEach(function(item, index, array) {
       console.log(item, index);
     });
-
-    //console.log(this.state.itemsToDelete[0])
-
   }
 
   runCheckboxAnimation (el) {
@@ -248,9 +237,24 @@ class Items extends Component {
     Database.bulkDeleteItems(userId, this.state.mainListId, this.state.subListId, this.state.itemsToDelete);
   }
 
+  showDeleteAllItemsModal () {
+    this.setState({showDeleteAllItemsModal: true})
+  }
+
+  handleCancelDeleteAllItems () {
+    this.setState({
+      showDeleteAllItemsModal: false
+    })
+  }
+
   handleDeleteAllItems () {
     let userId =  firebase.auth().currentUser.uid;
+
     Database.deleteAllItems(userId, this.state.mainListId, this.state.subListId, this.state.items);
+
+    this.setState({
+      showDeleteAllItemsModal: !this.state.showDeleteAllItemsModal
+    })
   }
 
   /*handleItemClick(itemId, itemTitle) {
@@ -310,7 +314,7 @@ class Items extends Component {
           </div>
           <div className='item-delete-btn-container'>
             <Button className='item-delete-btn box-shadow' bsStyle="info" bsSize="small" onClick={this.handleBulkItemDelete.bind(this)}>Delete</Button>
-            <Button className='item-delete-btn box-shadow' bsStyle="info" bsSize="small" onClick={this.handleDeleteAllItems.bind(this)}>Delete All</Button>
+            <Button className='item-delete-btn box-shadow' bsStyle="info" bsSize="small" onClick={this.showDeleteAllItemsModal.bind(this)}>Delete All</Button>
           </div>
           <hr className="hrFormat" style={{marginLeft: '10px', marginRight: '10px', marginBottom: '30px'}}/>
           <section className="jumbotron" id="mainListSection" style={{paddingTop: 25}}>
@@ -337,6 +341,15 @@ class Items extends Component {
           </Modal.Footer>
         </div>
         {this.state.showSavePrompt ? <MessagePrompt message='Saved!'/> : null}
+        {this.state.showDeleteAllItemsModal ? <Modal show={true} data-dismiss="modal" id="delete-all-items-modal-container">
+          <div>
+            <p id="editSaveText">Delete All Items?</p>
+          </div>
+          <div className='item-delete-btn-container'>
+            <Button className='item-delete-btn box-shadow' bsStyle="info" bsSize="small" onClick={this.handleDeleteAllItems.bind(this)}>Yes</Button>
+            <Button className='item-delete-btn box-shadow' bsStyle="info" bsSize="small" onClick={this.handleCancelDeleteAllItems.bind(this)}>No</Button>
+          </div>
+        </Modal> : null}
         {/*{this.state.showDelModal ? <DeleteModal listId={this.state.listId}
                                                 subListTitle={this.state.subListTitle} />: null}*/}
         {/*<Fireworks/>*/}

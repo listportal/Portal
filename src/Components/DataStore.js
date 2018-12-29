@@ -14,6 +14,7 @@ const listStore = store({
   subListBackgroundColor: '',
   itemId: '',
   itemTitle: '',
+  isYes: ''
   /*get mainListId () {
     return listStore.mainListIdValue
   },
