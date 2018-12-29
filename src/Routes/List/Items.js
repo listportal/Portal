@@ -38,6 +38,7 @@ class Items extends Component {
     this.handleListClose = this.handleListClose.bind(this)
     this.handleSubListSubmit = this.handleSubListSubmit.bind(this);
     this.handleDeleteCheckBoxChange = this.handleDeleteCheckBoxChange.bind(this);
+    this.runCheckboxAnimation = this.runCheckboxAnimation.bind(this);
   }
 
   componentWillMount () {
@@ -206,7 +207,17 @@ class Items extends Component {
 
   handleDeleteCheckBoxChange (e, itemId) {
     let itemsToDelete = this.state.itemsToDelete;
+    let checkbox;
+    // e.currentTarget.style.animation = ' ';
+    // void e.currentTarget.offsetWidth;
+    checkbox = e.currentTarget;
+    checkbox.style.animation = 'unset';
+    setTimeout(()=>{
+      this.runCheckboxAnimation(checkbox)
+    }, 100);
     if (e.target.checked) {
+
+
       console.log('Checked!')
       itemsToDelete.push(itemId);
     } else {
@@ -226,6 +237,10 @@ class Items extends Component {
 
     //console.log(this.state.itemsToDelete[0])
 
+  }
+
+  runCheckboxAnimation (el) {
+    el.style.animation = 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both'
   }
 
   handleBulkItemDelete () {
@@ -305,7 +320,7 @@ class Items extends Component {
                   return (
                     <Animated animationIn="flipInX" animationOut="fadeOut" isVisible={true}>
                     <li id="items" key={item.id}>
-                      <input ref={item.id} type="checkbox" onChange={(e) => this.handleDeleteCheckBoxChange(e, item.id)} ></input><div ><p style={{marginBottom: 0, fontWeight: 'normal'}}>{item.title}</p></div><div style={{display: 'flex'}}><a onClick={() => this.handleEditShow(item.id, item.title)} style={{color: 'green'}}><i id="editIcon" className="fas fa-edit" style={{color: 'green'}}></i></a><a onClick={() => this.handleItemDelShow(item.id, item.title)} style={{marginLeft: 20}}><i id="delIcon" className="fas fa-trash-alt"></i></a></div>
+                      <div className="item-name-checkbox-container"><input className="item-checkbox" ref={item.id} type="checkbox" onChange={(e) => this.handleDeleteCheckBoxChange(e, item.id)} ></input><p className="item-title" >{item.title}</p></div><div style={{display: 'flex'}}><a onClick={() => this.handleEditShow(item.id, item.title)} style={{color: 'green'}}><i id="editIcon" className="fas fa-edit" style={{color: 'green'}}></i></a><a onClick={() => this.handleItemDelShow(item.id, item.title)} style={{marginLeft: 20}}><i id="delIcon" className="fas fa-trash-alt"></i></a></div>
                     </li>
                     </Animated>
                   )
