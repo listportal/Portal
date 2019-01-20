@@ -8,6 +8,13 @@ body {
     /*background-color: #fff;*/
 }
 
+.removeAnimation {
+    -webkit-backface-visibility: unset!important;
+    backface-visibility: unset!important;
+    -webkit-animation-name: unset!important;
+    animation-name: unset!important;
+}
+
 #App {
     text-align: center;
     padding-left: 0px;

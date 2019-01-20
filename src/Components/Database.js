@@ -70,6 +70,7 @@ export default class Database {
       listRef.update({
         title: itemName
       });
+      console.log("EDIT ITEM LIST REF: " + listRef)
     }
 
     static deleteItem(userId, listId, subListId, itemId) {
